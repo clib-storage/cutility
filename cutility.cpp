@@ -6,7 +6,14 @@
 
 namespace Utility{
 
-    //replace all occurences of a string with another string
+    /**
+     * @brief replace all occurences of a string with another string, don't change the original string
+     * 
+     * @param s the string to modify
+     * @param old the string to replace
+     * @param new_ the replacement string
+     * @return the modified string
+     */
     std::string replace(std::string s, std::string old, std::string new_){
         std::string buffer;
         while (s.size()){
@@ -22,6 +29,13 @@ namespace Utility{
         return buffer;
     }
 
+	/**
+	 * @brief remove all occurences of a string from another string, don't change the original string
+	 * 
+	 * @param s the string to modify
+	 * @param remove the string to remove
+	 * @return the modified string
+	 */
     std::string remove_all(std::string s, std::string remove){
         std::string buffer;
         while (s.size()){
@@ -36,6 +50,13 @@ namespace Utility{
         return buffer;
     }
 
+	/**
+	 * @brief remove all occurences of a character from a string, don't change the original string
+	 * 
+	 * @param s the string to modify
+	 * @param remove the character to remove
+	 * @return the modified string
+	 */
     std::string remove_all(std::string s, char remove){
         std::string buffer;
         while (s.size()){
@@ -50,7 +71,13 @@ namespace Utility{
         return buffer;
     }
 
-    //split a string into a vector of strings
+    /**
+     * @brief split a string into a vector of strings, don't change the original string
+     * 
+     * @param s the string to split
+     * @param delim the delimiter
+     * @return a vector of strings that were split from the original string
+     */
     std::vector<std::string> split(std::string s, char delim){
         std::vector<std::string> elems;
         std::string buffer;
@@ -73,6 +100,14 @@ namespace Utility{
         return elems;
     }
 
+	/**
+	 * @brief split a string into a vector of strings, but split on spaces, if a word has to be
+	 * 			split, it will be splitted in the middle of the word
+	 * 
+	 * @param s the string to split
+	 * @param max_length the maximum length of a string in the vector
+	 * @return the splitted string
+	 */
 	std::vector<std::string> split(std::string s, size_t max_length){
 		std::vector<std::string> elems;
 		std::string buffer;
@@ -92,7 +127,13 @@ namespace Utility{
 		return elems;
 	}
     
-    // Split a string into a vector of strings, but split on spaces, if a word has to be split, split on the space before the word
+    /**
+     * @brief split a string into a vector of strings, but split on spaces, if a word has to be splitted, we will split it at the last space
+     * 
+     * @param s the string to split
+     * @param max_length the maximum length of a string in the vector
+     * @return the splitted string
+     */
     std::vector<std::string> split_on_spaces(std::string s, size_t max_length){
         std::vector<std::string> elems;
         std::string buffer;
@@ -124,7 +165,13 @@ namespace Utility{
     }
 
 
-    //split a string into a queue of strings
+    /**
+     * @brief split a string into a queue of strings, don't change the original string
+     * 
+     * @param s the string to split
+     * @param delim the delimiter
+     * @return  a queue of strings that were split from the original string
+     */
     std::queue<std::string> splitQueue(std::string s, char delim){
         std::queue<std::string> elems;
         std::string buffer;
@@ -144,7 +191,12 @@ namespace Utility{
         return elems;
     }
 
-    //remove all occurences of space, tab, newline and carriage return at the end and beginning of a string
+	/**
+	 * @brief remove all occurences of space, tab, newline and carriage return at the end and beginning of a string
+	 * 
+	 * @param s the string to modify
+	 * @return the modified string
+	 */
     std::string strip(std::string s){
         const std::vector<char> chars = {' ', '\t', '\n', '\r'};
         bool found = false; //end of string found
@@ -170,6 +222,13 @@ namespace Utility{
         return s;
     }
 
+	/**
+	 * @brief calculate the difference between two strings (the more characters are different, the higher the difference)
+	 * 
+	 * @param s1 the first string
+	 * @param s2 the second string
+	 * @return the difference between the two strings
+	 */
     unsigned difference(std::string s1, std::string s2){
         unsigned diff = 0;
         if (s1.size() == s2.size()){
@@ -200,7 +259,15 @@ namespace Utility{
         return diff;
     }
 
-    // Extend a string with a character; if the string is longer than the length, the string is returned
+    /**
+     * @brief extend tne string with the character c until the string has the length length
+     * 
+     * @param str the original string
+     * @param length the length of the string to return
+     * @param c the character to use to extend the string
+     * @param center if true, the string will be centered, if false, the string will be extended at the end
+     * @return the extended string
+     */
     std::string extend(std::string str, size_t length, char c, bool center){
         if(str.length() < length){
             if(center){
@@ -222,6 +289,13 @@ namespace Utility{
         return str;
     }
 
+	/**
+	 * @brief format an integer to a string with a certain length
+	 * 
+	 * @param i the integer to format
+	 * @param length the length of the string to return
+	 * @return the formatted string
+	 */
     std::string format(int i, unsigned length){
         std::string s = std::to_string(i);
         while(s.length() < length){
@@ -230,7 +304,12 @@ namespace Utility{
         return s;
     }
 
-    // Get the number of characters in a string, count multibyte characters as one
+    /**
+     * @brief get the number of characters in a string (work wit multybyte characters)
+     * 
+     * @param s the string to analyze
+     * @return the number of characters in the string
+     */
     unsigned getNbchars(std::string s){
         unsigned nbchars = 0;
         for(unsigned i = 0; i < s.length(); i++){
@@ -241,11 +320,23 @@ namespace Utility{
         return nbchars;
     }
 
+	/**
+	 * @brief convert a uppercase character to a lowercase character
+	 * 
+	 * @param c the character to convert
+	 * @return the converted character
+	 */
     char lower(char c){
         if(c >= 'A' && c <= 'Z') c += 32;
         return c;
     }
 
+	/**
+	 * @brief convert a uppercase string to a lowercase string
+	 * 
+	 * @param s the string to convert
+	 * @return the converted string
+	 */
     std::string lower(std::string s){
         for(std::size_t i = 0; i < s.size(); i++){
             lower(s[i]);
@@ -253,6 +344,12 @@ namespace Utility{
         return s;
     }
 
+	/**
+	 * @brief find the smallest string in a vector of strings
+	 * 
+	 * @param v the vector of strings
+	 * @return the smallest string
+	 */
     std::string min_size(const std::vector<std::string>& v){
         std::string min = v[0];
         for(std::size_t i = 1; i < v.size(); i++){
@@ -263,6 +360,12 @@ namespace Utility{
         return min;
     }
 
+	/**
+	 * @brief find the biggest string in a vector of strings
+	 * 
+	 * @param v the vector of strings
+	 * @return the biggest string
+	 */
     std::string max_size(const std::vector<std::string>& v){
         std::string max = v[0];
         for(std::size_t i = 1; i < v.size(); i++){
@@ -273,7 +376,13 @@ namespace Utility{
         return max;
     }
 
-    //split a in b parts, return a vector of the parts
+	/**
+	 * @brief split 'a' in 'b' parts, return a vector of the parts
+	 * 
+	 * @param a the number to split
+	 * @param b the number of parts
+	 * @return a vector of the parts
+	 */
     std::vector<int> divide(int a, int b){
         size_t crt = 0;
         std::vector<int> parts;
@@ -288,6 +397,13 @@ namespace Utility{
         return parts;
     }
 
+	/**
+	 * @brief merge all string in the vector with the delimiter delim between each string
+	 * 
+	 * @param v the vector of strings to merge
+	 * @param delim the delimiter to use
+	 * @return the merged string
+	 */
     std::string join(const std::vector<std::string>& v, std::string delim){
         std::string s;
         for(std::size_t i = 0; i < v.size(); i++){
@@ -299,9 +415,24 @@ namespace Utility{
         return s;
     }
 
+	/**
+	 * @brief search for a substring in a string
+	 * 
+	 * @param s the string to search in
+	 * @param sub the substring to search
+	 * @return true if the substring is found, false otherwise
+	 */
     bool contains(const std::string& s, const std::string& sub){
         return s.find(sub) != std::string::npos;
     }
+
+	/**
+	 * @brief search for a character in a string
+	 * 
+	 * @param s the string to search in
+	 * @param c the character to search
+	 * @return true if the character is found, false otherwise
+	 */
     bool contains(const std::string& s, const char& c){
         return s.find(c) != std::string::npos;
     }
